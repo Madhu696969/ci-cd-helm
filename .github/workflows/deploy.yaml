@@ -21,6 +21,3 @@ jobs:
 
       - name: Helm Template
         run: helm template myapp helm/myapp
-
-      - name: Helm Deploy
-        run: helm upgrade --install myapp helm/myapp
