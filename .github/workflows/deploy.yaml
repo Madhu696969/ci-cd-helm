@@ -1,0 +1,26 @@
+name: CI/CD Helm Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+
+      - name: Helm Lint
+        run: helm lint helm/myapp
+
+      - name: Helm Template
+        run: helm template myapp helm/myapp
+
+      - name: Helm Deploy
+        run: helm upgrade --install myapp helm/myapp
